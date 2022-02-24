@@ -36,6 +36,10 @@ public class PlayerCombat : MonoBehaviour
         // Play an attack animation
         animator.SetTrigger("Slash");
 
+        // Detect enemies corresponding to slash
+
+        // Damage them
+
     }
 
     void Hit()
