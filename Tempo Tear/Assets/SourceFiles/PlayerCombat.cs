@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
+    // Player HP
+    public int maxHealth = 100;
+    int currentHealth;
+    
     // Animator Variable
     public Animator animator;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentHealth = maxHealth;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -30,7 +36,8 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
-    // 
+
+    // Player slashes 
     void Slash()
     {
         // Play an attack animation
@@ -38,13 +45,33 @@ public class PlayerCombat : MonoBehaviour
 
         // Detect enemies corresponding to slash
 
-        // Damage them
+        // Damage corresponding enemies
 
     }
 
-    void Hit()
+
+    // Player takes damage
+    public void TakeDamage(int damage)
     {
-        // Play a hit animation
+        currentHealth -= damage;
+
+        // Play hurt animation
         animator.SetTrigger("Hit");
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+
+    // Player dies
+    void Die()
+    {
+        // Play die animation
+
+        // Disable controls
+
+        // Show game over screen
     }
 }

@@ -30,5 +30,8 @@ public class Enemy : MonoBehaviour
         {
             transform.position += new Vector3(beatTempo * Time.deltaTime, 0f, 0f);
         }
+
+        // Check if enemy is in range of player
+        // Attack player
     }
 }
