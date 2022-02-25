@@ -58,7 +58,7 @@ public class Menu : MonoBehaviour
     // Moves to the "LevelSelect" scene
     public void playGame()
     {
-        SceneManager.LoadScene("LevelSelect");
+        SceneManager.LoadScene("Level01");
     }
 
 

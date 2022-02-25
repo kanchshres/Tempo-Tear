@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCombat : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    // Player HP
-    public int maxHealth = 100;
+    // Health Variables
+    public int maxHealth = 70;
     int currentHealth;
+    public HealthBar healthBar;
     
+    // Attack Variables
+    public LayerMask enemyLayers;
+
     // Animator Variable
     public Animator animator;
 
@@ -15,14 +19,16 @@ public class PlayerCombat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Set player's max health
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        // Determine if player is attacking
+        // Determine if player is slashing
         if (Input.GetMouseButtonDown(0))
         {
             Slash();
@@ -31,7 +37,7 @@ public class PlayerCombat : MonoBehaviour
         // Determine if player is hit
         if (Input.GetMouseButtonDown(1))
         {
-            Hit();
+            TakeDamage(20);
         }
 
     }
@@ -45,15 +51,17 @@ public class PlayerCombat : MonoBehaviour
 
         // Detect enemies corresponding to slash
 
+
         // Damage corresponding enemies
 
     }
 
 
-    // Player takes damage
+    // Player is hit
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
 
         // Play hurt animation
         animator.SetTrigger("Hit");
