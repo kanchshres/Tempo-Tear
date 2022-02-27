@@ -28,12 +28,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Determine if player is slashing
-        if (Input.GetMouseButtonDown(0))
-        {
-            Slash();
-        }
-
         // Determine if player is hit
         if (Input.GetMouseButtonDown(1))
         {
@@ -44,13 +38,14 @@ public class Player : MonoBehaviour
 
 
     // Player slashes 
-    void Slash()
+    public void Slash()
     {
+        // Detect closest enemy corresponding to slash
+        // Detect enemy's location (LS or RS)
+
         // Play an attack animation
+        transform.localRotation = Quaternion.Euler(0, 180, 0); // Flips character
         animator.SetTrigger("Slash");
-
-        // Detect enemies corresponding to slash
-
 
         // Damage corresponding enemies
 
@@ -79,6 +74,7 @@ public class Player : MonoBehaviour
         // Play die animation
 
         // Disable controls
+        this.enabled = false;
 
         // Show game over screen
     }

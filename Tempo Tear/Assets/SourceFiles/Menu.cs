@@ -18,7 +18,7 @@ public class Menu : MonoBehaviour
     // Audio Variables
     public AudioMixer audioMixer;
 
-    // Start is called before the first frame update
+    // Initialization
     void Start()
     {
         // Resolutions setup

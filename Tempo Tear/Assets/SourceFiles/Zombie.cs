@@ -14,7 +14,7 @@ public class Zombie : MonoBehaviour
     // Animator Variable
     public Animator animator;
 
-    // Start is called before the first frame update
+    // Initialization
     void Start()
     {
         // Set zombie's max health
@@ -32,9 +32,7 @@ public class Zombie : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        // Play hurt animation
         animator.SetTrigger("Hurt");
-
         if (currentHealth <= 0)
         {
             Die();
@@ -48,6 +46,5 @@ public class Zombie : MonoBehaviour
 
         // Disable enemy
         this.enabled = false;
-        GetComponent<Zombie>().enabled = false;
     }
 }
