@@ -10,36 +10,45 @@ public class EnemyObject : MonoBehaviour
     // Animator Variable
     public Animator animator;
     public SpriteRenderer spriterend;
-    private bool stopMoving;
+    public Blade blade;
+    public Zombie zombie;
+
+    private bool spawnedLeft;
 
     // Start is called before the first frame update
     void Start()
     {
-        speed = beatTempo / 60f;
-        // Flip zombie to correct position
-        if (transform.position.x > 0)
-        {
-            spriterend.flipX = true;
-        }
-        else
-        {
-            spriterend.flipX = false;
-        }
-        stopMoving = false;
+            speed = beatTempo / 60f;
+
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            // Flip zombie to correct position
+            if (transform.position.x > 0)
+            {
+                spriterend.flipX = true;
+                spawnedLeft = false;
+            }
+            else
+            {
+                spriterend.flipX = false;
+                spawnedLeft = true;
+            }
     }
     // Update is called once per frame
     void Update()
     {
-        if (stopMoving == true)
+        if (zombie.currentHealth > 0)
         {
-            Debug.Log("Attacking");
-            Debug.Log(Time.time);
-            Attack();
-        }
-        else
-        {
-            movement();
-            //Debug.Log(GameObject.Find("Enemy").transform.position);
+            if ((transform.position.x >= -0.8471791 && spawnedLeft == true) || (transform.position.x <= 0.85 && spawnedLeft == false))
+            {
+                Attack();
+            }
+
+            else
+            {
+                movement();
+                //Debug.Log(GameObject.Find("Enemy").transform.position);
+            }
         }
 
         // Check if enemy is in range of 
@@ -54,6 +63,7 @@ public class EnemyObject : MonoBehaviour
     // Attack player
     void Attack()
     {
+        Debug.Log("attacking!");
         animator.SetTrigger("Attack");
     }
 
@@ -65,10 +75,7 @@ public class EnemyObject : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            stopMoving = true;
-        }
+        
     }
 
 }

@@ -10,11 +10,19 @@ public class EnemySpawn : MonoBehaviour
     public SpriteRenderer spriterend;
     public float[] spawnTimes;
     private int spawnNumber;
+    public bool testing;
+    public int testNumber;
+
 
     // Start is called before the first frame update
     void Start()
     {
         spawnNumber = 0;
+        if (testing == true)
+        {
+            spawnNumber = testNumber;
+            audioSource.time = spawnTimes[spawnNumber];
+        }
     }
 
     // Update is called once per frame
@@ -32,6 +40,13 @@ public class EnemySpawn : MonoBehaviour
     {   
         int randEnemy = Random.Range(0, enemyPrefabs.Length);
         int randSpawnPoint = Random.Range(0, spawnPoints.Length);
-        Instantiate(enemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation);
+        if (testing == true)
+        {
+            Instantiate(enemyPrefabs[randEnemy], spawnPoints[1].position, transform.rotation);
+        }
+        else
+        {
+            Instantiate(enemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation);
+        }
     }
 }

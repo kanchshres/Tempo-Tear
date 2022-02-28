@@ -111,10 +111,10 @@ public class Blade : MonoBehaviour
                 diagnolLeftCut = false;
                 diagnolRightCut = false;
             }
-            // Checks if slash is diagnol
+            // Checks if slash is diagonal
             else
             {
-                // Checks if slash is diagnol left
+                // Checks if slash is diagonal left
                 if ((xMagnitude < 0 && yMagnitude < 0) || (0 < xMagnitude && 0 < yMagnitude))
                 {
                     horizontalCut = false;
@@ -122,7 +122,7 @@ public class Blade : MonoBehaviour
                     diagnolLeftCut = true;
                     diagnolRightCut = false;
                 }
-                // Checks if slash is diagnol right
+                // Checks if slash is diagonal right
                 else
                 {
                     horizontalCut = false;
@@ -131,7 +131,8 @@ public class Blade : MonoBehaviour
                     diagnolRightCut = true;
                 }
             }
-        }else
+        }
+        else
         {
             horizontalCut = false;
             verticalCut = false;

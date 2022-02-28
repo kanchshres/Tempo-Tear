@@ -6,7 +6,7 @@ public class Zombie : MonoBehaviour
 {
     // Health Variables
     public int maxHealth = 20;
-    int currentHealth;
+    public int currentHealth;
 
     // Attack Variables
     public LayerMask playerLayer;
@@ -24,7 +24,7 @@ public class Zombie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Determine if player is in range of attack
+
 
     }
 
@@ -46,5 +46,17 @@ public class Zombie : MonoBehaviour
 
         // Disable enemy
         this.enabled = false;
+    }
+    void Delete()
+    {
+        Destroy(gameObject);
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            TakeDamage(20);
+        }
     }
 }

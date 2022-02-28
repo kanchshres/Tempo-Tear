@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
     // Player is hit
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
+        currentHealth -= 20;
         healthBar.SetHealth(currentHealth);
 
         // Play hurt animation
@@ -74,8 +74,16 @@ public class Player : MonoBehaviour
         // Play die animation
 
         // Disable controls
-        this.enabled = false;
+        //this.enabled = false;
 
         // Show game over screen
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Hurt!");
+            TakeDamage(20);
+        }
     }
 }
