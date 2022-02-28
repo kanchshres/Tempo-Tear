@@ -20,7 +20,7 @@ public class Blade : MonoBehaviour
     public bool diagnolLeftCut = false;
     public bool diagnolRightCut = false;
     List<Vector2> positions = new List<Vector2>();
-    
+
     // Player Variables
     public Player player;
 
@@ -40,7 +40,7 @@ public class Blade : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             StartSlashing();
-        } 
+        }
         // Checks if user is not trying to slash
         else if (Input.GetMouseButtonUp(0))
         {
@@ -94,7 +94,7 @@ public class Blade : MonoBehaviour
 
         // Check if slash magnitude is sufficient
         if (1.5 < Mathf.Abs(xMagnitude) || 1.5 < Mathf.Abs(yMagnitude))
-        {   
+        {
             // Check if slash is vertical
             if (Mathf.Abs(yMagnitude) < 1)
             {
@@ -102,7 +102,7 @@ public class Blade : MonoBehaviour
                 verticalCut = false;
                 diagnolLeftCut = false;
                 diagnolRightCut = false;
-            } 
+            }
             // Checks if slash is horizontal
             else if ((Mathf.Abs(xMagnitude) < 1))
             {

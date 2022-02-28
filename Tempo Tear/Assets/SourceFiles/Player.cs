@@ -48,7 +48,6 @@ public class Player : MonoBehaviour
         animator.SetTrigger("Slash");
 
         // Damage corresponding enemies
-
     }
 
 
