@@ -8,9 +8,12 @@ public class Player : MonoBehaviour
     public int maxHealth = 70;
     int currentHealth;
     public HealthBar healthBar;
-    
+
     // Attack Variables
-    public LayerMask enemyLayers;
+    public Transform attackPoint;
+    public float attackRange = 2f;
+    public int attackDamage = 20;
+    public LayerMask enemyLayer;
 
     // Animator Variable
     public Animator animator;
@@ -33,21 +36,42 @@ public class Player : MonoBehaviour
         {
             TakeDamage(20);
         }
-
     }
 
 
     // Player slashes 
-    public void Slash()
+    public void Slash(int cutType)
     {
-        // Detect closest enemy corresponding to slash
-        // Detect enemy's location (LS or RS)
+        // Detect enemies in range of slash
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
 
         // Play an attack animation
-        transform.localRotation = Quaternion.Euler(0, 180, 0); // Flips character
+        // transform.localRotation = Quaternion.Euler(0, 180, 0); // Flips character
         animator.SetTrigger("Slash");
 
         // Damage corresponding enemies
+        foreach(Collider2D enemy in hitEnemies)
+        {
+            // Checks if cutType corresponds to Zombie's slash pattern
+            int cutRequired = enemy.GetComponent<Zombie>().GetSlashPattern();
+            cutType = cutRequired; // Temp
+            if (cutType == cutRequired)
+            {
+                enemy.GetComponent<Zombie>().TakeDamage(attackDamage, cutType);
+                break;
+            }
+        }
+    }
+
+
+    // Draws Attack Range For Scene ONLY
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+        {
+            return;
+        }
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
 
@@ -76,13 +100,5 @@ public class Player : MonoBehaviour
         //this.enabled = false;
 
         // Show game over screen
-    }
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            Debug.Log("Hurt!");
-            TakeDamage(20);
-        }
     }
 }

@@ -36,6 +36,8 @@ public class EnemySpawn : MonoBehaviour
             spawnNumber += 1;
         }
     }
+
+
     void Spawn()
     {   
         int randEnemy = Random.Range(0, enemyPrefabs.Length);

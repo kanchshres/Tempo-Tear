@@ -63,13 +63,11 @@ public class EnemyObject : MonoBehaviour
     // Attack player
     void Attack()
     {
-        Debug.Log("attacking!");
         animator.SetTrigger("Attack");
     }
 
     void Death()
     {
-        Debug.Log("Death");
         animator.SetTrigger("Death");
     }
 
@@ -77,5 +75,4 @@ public class EnemyObject : MonoBehaviour
     {
         
     }
-
 }
