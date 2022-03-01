@@ -12,28 +12,27 @@ public class EnemyObject : MonoBehaviour
     public SpriteRenderer spriterend;
     public Blade blade;
     public Zombie zombie;
-
     private bool spawnedLeft;
 
     // Start is called before the first frame update
     void Start()
     {
-            speed = beatTempo / 60f;
-
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-            // Flip zombie to correct position
-            if (transform.position.x > 0)
-            {
-                spriterend.flipX = true;
-                spawnedLeft = false;
+        speed = beatTempo / 60f;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        // Flip zombie to correct position
+        if (transform.position.x > 0)
+        {
+            spriterend.flipX = true;
+            spawnedLeft = false;
             }
-            else
-            {
-                spriterend.flipX = false;
-                spawnedLeft = true;
-            }
+        else
+        {
+            spriterend.flipX = false;
+            spawnedLeft = true;
+        }
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -64,6 +63,7 @@ public class EnemyObject : MonoBehaviour
     void Attack()
     {
         animator.SetTrigger("Attack");
+        ScoreSetter.multiplier = 1; 
     }
 
     void Death()

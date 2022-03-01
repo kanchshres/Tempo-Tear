@@ -59,6 +59,8 @@ public class Zombie : MonoBehaviour
                 Die();
             }
         }
+        ScoreSetter.score += 300 * ScoreSetter.multiplier;
+        ScoreSetter.multiplier++;
     }
 
 

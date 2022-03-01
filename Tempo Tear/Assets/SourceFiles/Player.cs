@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
     // Player is hit
     public void TakeDamage(int damage)
     {
+        ScoreSetter.multiplier = 1; 
         currentHealth -= 20;
         healthBar.SetHealth(currentHealth);
 
