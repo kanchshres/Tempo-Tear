@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public float attackRange = 2f;
     public int attackDamage = 20;
     public LayerMask enemyLayer;
+    int numOfCols = 0;
 
     // Animator Variable
     public Animator animator;
@@ -45,11 +46,8 @@ public class Player : MonoBehaviour
         // Detect enemies in range of slash
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
 
-        // Play an attack animation
-        // transform.localRotation = Quaternion.Euler(0, 180, 0); // Flips character
-        animator.SetTrigger("Slash");
-
         // Damage corresponding enemies
+        int side = 0;
         foreach(Collider2D enemy in hitEnemies)
         {
             // Checks if cutType corresponds to Zombie's slash pattern
@@ -58,9 +56,23 @@ public class Player : MonoBehaviour
             if (cutType == cutRequired)
             {
                 enemy.GetComponent<Zombie>().TakeDamage(attackDamage, cutType);
+                side = enemy.GetComponent<Zombie>().GetLocation();
                 break;
             }
         }
+
+        // Play an attack animation
+        if (side == 1)
+        {
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
+            transform.position = new Vector3(-0.24f, transform.position.y, transform.position.z);
+        }
+        else
+        {
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            transform.position = new Vector3(.24f, transform.position.y, transform.position.z);
+        }
+        animator.SetTrigger("Slash");
     }
 
 
@@ -78,15 +90,18 @@ public class Player : MonoBehaviour
     // Player is hit
     public void TakeDamage(int damage)
     {
-        currentHealth -= 20;
+        ScoreSetter.multiplier = 1;
+        currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
 
         // Play hurt animation
-        animator.SetTrigger("Hit");
-
-        if (currentHealth <= 0)
+        if (animator.gameObject.activeSelf)
         {
-            Die();
+            animator.SetTrigger("Hit");
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 
@@ -100,5 +115,17 @@ public class Player : MonoBehaviour
         //this.enabled = false;
 
         // Show game over screen
+    }
+
+
+    // Determines whether or not player is hit
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        numOfCols += 1;
+        if (collision.gameObject.tag == "Enemy" && numOfCols == 2)
+        {
+            TakeDamage(20);
+            numOfCols = 0;
+        }
     }
 }

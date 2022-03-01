@@ -6,72 +6,64 @@ public class EnemyObject : MonoBehaviour
 {
     public float beatTempo;
     private float speed;
+    bool inRange = false;
 
     // Animator Variable
     public Animator animator;
-    public SpriteRenderer spriterend;
     public Zombie zombie;
-
     private bool spawnedLeft;
+    int side = 0;
+
+    // Attack Variables
+    public Player player;
+
 
     // Start is called before the first frame update
     void Start()
     {
-            speed = beatTempo / 60f;
 
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-            // Flip zombie to correct position
-            if (transform.position.x > 0)
-            {
-                spriterend.flipX = true;
-                spawnedLeft = false;
-            }
-            else
-            {
-                spriterend.flipX = false;
-                spawnedLeft = true;
-            }
+        speed = beatTempo / 60f;
+
+        // Flip zombie to correct position
+        if (transform.position.x > 0)
+        {
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
+            spawnedLeft = false;
+        }
+        else
+        {
+            spawnedLeft = true;
+            side = 1;
+        }
+
+        GetComponent<Zombie>().SetLocation(side);
     }
+
+
     // Update is called once per frame
     void Update()
     {
-        if (zombie.currentHealth > 0)
+        if (0 < zombie.currentHealth && inRange == false)
         {
-            if ((transform.position.x >= -0.8471791 && spawnedLeft == true) || (transform.position.x <= 0.85 && spawnedLeft == false))
-            {
-                Attack();
-            }
-
-            else
-            {
-                movement();
-                //Debug.Log(GameObject.Find("Enemy").transform.position);
-            }
+            movement();
         }
-
-        // Check if enemy is in range of 
     }
 
+
+    // Moves the enemy towards the player
     void movement()
     {
         transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player").transform.position,
         speed * Time.deltaTime);
     }
 
-    // Attack player
-    void Attack()
+    // Determines if enemy can attack player
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        animator.SetTrigger("Attack");
-    }
-
-    void Death()
-    {
-        animator.SetTrigger("Death");
-    }
-
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        
+        if (collision.gameObject.tag == "Player")
+        {
+            inRange = true;
+            zombie.Attack();
+        }
     }
 }
