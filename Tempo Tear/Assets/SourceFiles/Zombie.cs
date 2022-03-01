@@ -10,11 +10,16 @@ public class Zombie : MonoBehaviour
     public int slashPattern;
 
     // Attack Variables
+    public Player player;
     public int attackDamage = 20;
     public LayerMask playerLayer;
+    bool isAttacking = false;
 
     // Animator Variable
     public Animator animator;
+
+    // Location Variable
+    int location;
 
     // Initialization
     void Start()
@@ -32,10 +37,10 @@ public class Zombie : MonoBehaviour
     }
 
 
-    // Zombie attacks player
-    void Attack()
+    // Gets the Zombie's location of leftside or rightside
+    public int GetLocation()
     {
-
+        return location;
     }
 
 
@@ -44,6 +49,23 @@ public class Zombie : MonoBehaviour
     {
         return slashPattern;
     }
+
+
+    // Zombie attacks player
+    public void Attack()
+    {
+        animator.SetTrigger("Attack");
+        player.TakeDamage(attackDamage);
+    }
+
+
+    // Sets the Zombie's location of leftside or rightside
+    public void SetLocation(int side)
+    {
+        location = side;
+    }
+
+
 
 
     // Zombie takes damage

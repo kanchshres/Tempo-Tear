@@ -10,18 +10,18 @@ public class EnemyObject : MonoBehaviour
     // Animator Variable
     public Animator animator;
     public SpriteRenderer spriterend;
-    public Blade blade;
     public Zombie zombie;
-
     private bool spawnedLeft;
+    int side = 0;
+
+    public Player player;
+
 
     // Start is called before the first frame update
     void Start()
     {
             speed = beatTempo / 60f;
 
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             // Flip zombie to correct position
             if (transform.position.x > 0)
             {
@@ -32,27 +32,28 @@ public class EnemyObject : MonoBehaviour
             {
                 spriterend.flipX = false;
                 spawnedLeft = true;
+                side = 1;
             }
+
+        GetComponent<Zombie>().SetLocation(side);
     }
+
+
     // Update is called once per frame
     void Update()
     {
-        if (zombie.currentHealth > 0)
+        if ((transform.position.x >= -0.8471791 && spawnedLeft == true) || (transform.position.x <= 0.85 && spawnedLeft == false))
         {
-            if ((transform.position.x >= -0.8471791 && spawnedLeft == true) || (transform.position.x <= 0.85 && spawnedLeft == false))
-            {
-                Attack();
-            }
-
-            else
-            {
-                movement();
-                //Debug.Log(GameObject.Find("Enemy").transform.position);
-            }
+            Attack();
         }
 
-        // Check if enemy is in range of 
+        else
+        {
+            movement();
+            //Debug.Log(GameObject.Find("Enemy").transform.position);
+        }
     }
+
 
     void movement()
     {
@@ -64,6 +65,8 @@ public class EnemyObject : MonoBehaviour
     void Attack()
     {
         animator.SetTrigger("Attack");
+
+        player.TakeDamage(20);
     }
 
     void Death()

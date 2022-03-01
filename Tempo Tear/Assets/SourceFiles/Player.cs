@@ -45,11 +45,8 @@ public class Player : MonoBehaviour
         // Detect enemies in range of slash
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
 
-        // Play an attack animation
-        // transform.localRotation = Quaternion.Euler(0, 180, 0); // Flips character
-        animator.SetTrigger("Slash");
-
         // Damage corresponding enemies
+        int side = 0;
         foreach(Collider2D enemy in hitEnemies)
         {
             // Checks if cutType corresponds to Zombie's slash pattern
@@ -58,9 +55,23 @@ public class Player : MonoBehaviour
             if (cutType == cutRequired)
             {
                 enemy.GetComponent<Zombie>().TakeDamage(attackDamage, cutType);
+                side = enemy.GetComponent<Zombie>().GetLocation();
                 break;
             }
         }
+
+        // Play an attack animation
+        if (side == 1)
+        {
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
+            transform.position = new Vector3(-0.24f, transform.position.y, transform.position.z);
+        }
+        else
+        {
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            transform.position = new Vector3(.24f, transform.position.y, transform.position.z);
+        }
+        animator.SetTrigger("Slash");
     }
 
 
@@ -78,11 +89,12 @@ public class Player : MonoBehaviour
     // Player is hit
     public void TakeDamage(int damage)
     {
-        currentHealth -= 20;
+        currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
 
         // Play hurt animation
-        animator.SetTrigger("Hit");
+        //animator.SetTrigger("Hit");
+        animator.Play("Player_Block");
 
         if (currentHealth <= 0)
         {

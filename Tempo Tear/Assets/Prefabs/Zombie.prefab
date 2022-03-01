@@ -125,9 +125,7 @@ MonoBehaviour:
   maxHealth: 20
   currentHealth: 0
   slashPattern: 0
-  attackPointPrefab: {fileID: 6983596266574692126, guid: 1abd4fe27b217d64a94690ae287e9069, type: 3}
-  attackPoint: {fileID: 6983596266574692125, guid: 1abd4fe27b217d64a94690ae287e9069, type: 3}
-  attackRange: 1.48
+  player: {fileID: 0}
   attackDamage: 20
   playerLayer:
     serializedVersion: 2
@@ -148,8 +146,8 @@ MonoBehaviour:
   beatTempo: 135
   animator: {fileID: 1851034125432906830}
   spriterend: {fileID: 1851034125432906829}
-  blade: {fileID: 0}
   zombie: {fileID: 1851034125432906817}
+  player: {fileID: 4675082974541497344, guid: 35f20312b2d80dd4fb5cc0a7fd2e436b, type: 3}
 --- !u!61 &1851034125432906822
 BoxCollider2D:
   m_ObjectHideFlags: 0
