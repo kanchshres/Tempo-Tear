@@ -7,9 +7,11 @@ public class EnemySpawn : MonoBehaviour
     public AudioSource audioSource;
     public Transform[] spawnPoints;
     public GameObject[] enemyPrefabs;
-    public SpriteRenderer spriterend;
+    public GameObject slashPatterns;
+
     public float[] spawnTimes;
     private int spawnNumber;
+
     public bool testing;
     public int testNumber;
 
@@ -48,7 +50,26 @@ public class EnemySpawn : MonoBehaviour
         }
         else
         {
-            Instantiate(enemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation);
+            GameObject zombie = Instantiate(enemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation) as GameObject;
+            int slashType = zombie.GetComponent<Zombie>().GetSlashPattern();
+
+            if (slashType == 1)
+            {
+                Instantiate(slashPatterns.transform.GetChild(2).gameObject, zombie.transform);
+            }
+
+            else if (slashType == 2)
+            {
+                Instantiate(slashPatterns.transform.GetChild(3).gameObject, zombie.transform);
+            }
+            else if (slashType == 3)
+            {
+                Instantiate(slashPatterns.transform.GetChild(0).gameObject, zombie.transform);
+            }
+            else if (slashType == 4)
+            {
+                Instantiate(slashPatterns.transform.GetChild(1).gameObject, zombie.transform);
+            }
         }
     }
 }

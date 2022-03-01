@@ -99,12 +99,12 @@ public class Blade : MonoBehaviour
         // Check if slash magnitude is sufficient
         if (minSlashMagnitude < Mathf.Abs(xMagnitude) || minSlashMagnitude < Mathf.Abs(yMagnitude))
         {
-            // Check if slash is vertical
+            // Check if slash is horizontal
             if (Mathf.Abs(yMagnitude) < 1)
             {
                 cutType = 1;
             }
-            // Checks if slash is horizontal
+            // Checks if slash is vertical
             else if ((Mathf.Abs(xMagnitude) < 1))
             {
                 cutType = 2;
