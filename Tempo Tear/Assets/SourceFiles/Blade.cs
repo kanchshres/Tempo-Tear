@@ -15,11 +15,10 @@ public class Blade : MonoBehaviour
     Vector2 previousPosition;
 
     // Cutting Variables
-    public bool horizontalCut = false;
-    public bool verticalCut = false;
-    public bool diagnolLeftCut = false;
-    public bool diagnolRightCut = false;
+    public int cutType = 0;
+    float minSlashMagnitude = 1.5f;
     List<Vector2> positions = new List<Vector2>();
+
 
     // Player Variables
     public Player player;
@@ -44,7 +43,6 @@ public class Blade : MonoBehaviour
         // Checks if user is not trying to slash
         else if (Input.GetMouseButtonUp(0))
         {
-            player.Slash();
             StopSlashing();
         }
 
@@ -78,7 +76,13 @@ public class Blade : MonoBehaviour
     // Disable slashing
     void StopSlashing()
     {
+        // Consider player slash with specific slash type
         SlashType();
+        if (cutType != 0)
+        {
+            player.Slash(cutType);
+        }
+
         positions.Clear();
         isSlashing = false;
         currentTrail.transform.SetParent(null);
@@ -93,23 +97,17 @@ public class Blade : MonoBehaviour
         float yMagnitude = positions[positions.Count - 1].y - positions[0].y;
 
         // Check if slash magnitude is sufficient
-        if (1.5 < Mathf.Abs(xMagnitude) || 1.5 < Mathf.Abs(yMagnitude))
+        if (minSlashMagnitude < Mathf.Abs(xMagnitude) || minSlashMagnitude < Mathf.Abs(yMagnitude))
         {
             // Check if slash is vertical
             if (Mathf.Abs(yMagnitude) < 1)
             {
-                horizontalCut = true;
-                verticalCut = false;
-                diagnolLeftCut = false;
-                diagnolRightCut = false;
+                cutType = 1;
             }
             // Checks if slash is horizontal
             else if ((Mathf.Abs(xMagnitude) < 1))
             {
-                horizontalCut = false;
-                verticalCut = true;
-                diagnolLeftCut = false;
-                diagnolRightCut = false;
+                cutType = 2;
             }
             // Checks if slash is diagonal
             else
@@ -117,27 +115,18 @@ public class Blade : MonoBehaviour
                 // Checks if slash is diagonal left
                 if ((xMagnitude < 0 && yMagnitude < 0) || (0 < xMagnitude && 0 < yMagnitude))
                 {
-                    horizontalCut = false;
-                    verticalCut = false;
-                    diagnolLeftCut = true;
-                    diagnolRightCut = false;
+                    cutType = 3;
                 }
                 // Checks if slash is diagonal right
                 else
                 {
-                    horizontalCut = false;
-                    verticalCut = false;
-                    diagnolLeftCut = false;
-                    diagnolRightCut = true;
+                    cutType = 4;
                 }
             }
         }
         else
         {
-            horizontalCut = false;
-            verticalCut = false;
-            diagnolLeftCut = false;
-            diagnolRightCut = false;
+            cutType = 0;
         }
     }
 }

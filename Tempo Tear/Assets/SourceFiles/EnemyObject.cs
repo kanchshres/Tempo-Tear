@@ -10,7 +10,6 @@ public class EnemyObject : MonoBehaviour
     // Animator Variable
     public Animator animator;
     public SpriteRenderer spriterend;
-    public Blade blade;
     public Zombie zombie;
 
     private bool spawnedLeft;
@@ -63,13 +62,11 @@ public class EnemyObject : MonoBehaviour
     // Attack player
     void Attack()
     {
-        Debug.Log("attacking!");
         animator.SetTrigger("Attack");
     }
 
     void Death()
     {
-        Debug.Log("Death");
         animator.SetTrigger("Death");
     }
 
@@ -77,5 +74,4 @@ public class EnemyObject : MonoBehaviour
     {
         
     }
-
 }

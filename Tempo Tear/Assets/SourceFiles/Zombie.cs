@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
-    // Health Variables
+    // Health & Slash Variables
     public int maxHealth = 20;
     public int currentHealth;
+    public int slashPattern;
 
     // Attack Variables
+    public int attackDamage = 20;
     public LayerMask playerLayer;
 
     // Animator Variable
@@ -17,28 +19,50 @@ public class Zombie : MonoBehaviour
     // Initialization
     void Start()
     {
-        // Set zombie's max health
+        // Set zombie's max health and slash pattern
         currentHealth = maxHealth;
+        slashPattern = Random.Range(1, 4);
     }
+
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+
+    // Zombie attacks player
+    void Attack()
+    {
 
     }
 
-    // Zombie takes damage
-    public void TakeDamage(int damage)
+
+    // Gets the Zombie's specific slash pattern
+    public int GetSlashPattern()
     {
-        currentHealth -= damage;
-        animator.SetTrigger("Hurt");
-        if (currentHealth <= 0)
+        return slashPattern;
+    }
+
+
+    // Zombie takes damage
+    public void TakeDamage(int damage, int cutType)
+    {
+        // Checks if cut type 
+        if (cutType == slashPattern)
         {
-            Die();
+            currentHealth -= damage;
+            animator.SetTrigger("Hurt");
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 
+
+    // Zombie dies
     void Die()
     {
         // Die animation
@@ -47,16 +71,11 @@ public class Zombie : MonoBehaviour
         // Disable enemy
         this.enabled = false;
     }
+
+
+    // Deletes zombie from screen
     void Delete()
     {
         Destroy(gameObject);
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            TakeDamage(20);
-        }
     }
 }
