@@ -22,7 +22,7 @@ public class Zombie : MonoBehaviour
     int location;
 
     // Initialization
-    void Start()
+    void Awake()
     {
         // Set zombie's max health and slash pattern
         currentHealth = maxHealth;

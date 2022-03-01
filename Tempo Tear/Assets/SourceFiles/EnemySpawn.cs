@@ -52,7 +52,7 @@ public class EnemySpawn : MonoBehaviour
         {
             GameObject zombie = Instantiate(enemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation) as GameObject;
             int slashType = zombie.GetComponent<Zombie>().GetSlashPattern();
-
+            Debug.Log(slashType);
             if (slashType == 1)
             {
                 Instantiate(slashPatterns.transform.GetChild(2).gameObject, zombie.transform);

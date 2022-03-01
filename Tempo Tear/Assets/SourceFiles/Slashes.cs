@@ -8,7 +8,15 @@ public class Slashes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        starting = new Vector3(transform.position.x + 1.2f, 1f, transform.position.z);
+        if (transform.position.x > 0)
+        {
+            starting = new Vector3(transform.position.x - 1.2f, 1f, transform.position.z);
+        }
+        else
+        {
+            starting = new Vector3(transform.position.x + 1.2f, 1f, transform.position.z);
+        }
+        
         transform.position = starting;
     }
 
