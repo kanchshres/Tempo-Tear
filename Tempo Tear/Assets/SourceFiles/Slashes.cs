@@ -10,11 +10,11 @@ public class Slashes : MonoBehaviour
     {
         if (transform.position.x > 0)
         {
-            starting = new Vector3(transform.position.x - 1.2f, 1f, transform.position.z);
+            starting = new Vector3(transform.position.x - 1.2f, -1f, 0f);
         }
         else
         {
-            starting = new Vector3(transform.position.x + 1.2f, 1f, transform.position.z);
+            starting = new Vector3(transform.position.x + 1.2f, -1f, 0f);
         }
         
         transform.position = starting;
