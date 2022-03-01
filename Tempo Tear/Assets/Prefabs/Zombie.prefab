@@ -125,6 +125,10 @@ MonoBehaviour:
   maxHealth: 20
   currentHealth: 0
   slashPattern: 0
+<<<<<<< HEAD
+=======
+  player: {fileID: 0}
+>>>>>>> fcbad4ac5f4535ace5537813a58359a488234ab3
   attackDamage: 20
   playerLayer:
     serializedVersion: 2
@@ -145,8 +149,8 @@ MonoBehaviour:
   beatTempo: 135
   animator: {fileID: 1851034125432906830}
   spriterend: {fileID: 1851034125432906829}
-  blade: {fileID: 0}
   zombie: {fileID: 1851034125432906817}
+  player: {fileID: 4675082974541497344, guid: 35f20312b2d80dd4fb5cc0a7fd2e436b, type: 3}
 --- !u!61 &1851034125432906822
 BoxCollider2D:
   m_ObjectHideFlags: 0
