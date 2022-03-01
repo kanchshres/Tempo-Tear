@@ -880,6 +880,7 @@ MonoBehaviour:
   - {fileID: 471530104}
   enemyPrefabs:
   - {fileID: 1851034125432906831, guid: c3d2bca6d32700b40a4cab8d1446f225, type: 3}
+  slashPatterns: {fileID: 5910220833161894949, guid: 3f8e7282f79764c91a6d9b463976051d, type: 3}
   spawnTimes:
   - 49.75
   - 52.1
