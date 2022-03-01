@@ -66,8 +66,6 @@ public class Zombie : MonoBehaviour
     }
 
 
-
-
     // Zombie takes damage
     public void TakeDamage(int damage, int cutType)
     {

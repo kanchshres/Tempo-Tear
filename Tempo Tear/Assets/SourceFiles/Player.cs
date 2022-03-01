@@ -93,12 +93,13 @@ public class Player : MonoBehaviour
         healthBar.SetHealth(currentHealth);
 
         // Play hurt animation
-        //animator.SetTrigger("Hit");
-        animator.Play("Player_Block");
-
-        if (currentHealth <= 0)
+        if (animator.gameObject.activeSelf)
         {
-            Die();
+            animator.SetTrigger("Hit");
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 
