@@ -55,7 +55,7 @@ public class Zombie : MonoBehaviour
     public void Attack()
     {
         animator.SetTrigger("Attack");
-        player.TakeDamage(attackDamage);
+        ScoreSetter.multiplier = 1;
     }
 
 

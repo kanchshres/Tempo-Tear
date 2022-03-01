@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public float attackRange = 2f;
     public int attackDamage = 20;
     public LayerMask enemyLayer;
+    int numOfCols = 0;
 
     // Animator Variable
     public Animator animator;
@@ -89,12 +90,8 @@ public class Player : MonoBehaviour
     // Player is hit
     public void TakeDamage(int damage)
     {
-<<<<<<< HEAD
-        ScoreSetter.multiplier = 1; 
-        currentHealth -= 20;
-=======
+        ScoreSetter.multiplier = 1;
         currentHealth -= damage;
->>>>>>> fcbad4ac5f4535ace5537813a58359a488234ab3
         healthBar.SetHealth(currentHealth);
 
         // Play hurt animation
@@ -118,5 +115,17 @@ public class Player : MonoBehaviour
         //this.enabled = false;
 
         // Show game over screen
+    }
+
+
+    // Determines whether or not player is hit
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        numOfCols += 1;
+        if (collision.gameObject.tag == "Enemy" && numOfCols == 2)
+        {
+            TakeDamage(20);
+            numOfCols = 0;
+        }
     }
 }

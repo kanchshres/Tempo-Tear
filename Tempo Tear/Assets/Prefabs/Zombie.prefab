@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1851034125432906828}
   - component: {fileID: 1851034125432906829}
-  - component: {fileID: 1851034125432906830}
   - component: {fileID: 1851034125432906817}
   - component: {fileID: 1851034125432906816}
   - component: {fileID: 1851034125432906822}
   - component: {fileID: 1851034125432906823}
   - component: {fileID: 5920111777917587286}
+  - component: {fileID: 444759281079494044}
   m_Layer: 6
   m_Name: Zombie
   m_TagString: Enemy
@@ -90,26 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1851034125432906830
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1851034125432906831}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cb8b304a133e84b828792d024e0c9e46, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1851034125432906817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,15 +105,12 @@ MonoBehaviour:
   maxHealth: 20
   currentHealth: 0
   slashPattern: 0
-<<<<<<< HEAD
-=======
   player: {fileID: 0}
->>>>>>> fcbad4ac5f4535ace5537813a58359a488234ab3
   attackDamage: 20
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  animator: {fileID: 1851034125432906830}
+  animator: {fileID: 444759281079494044}
 --- !u!114 &1851034125432906816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,10 +124,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beatTempo: 135
-  animator: {fileID: 1851034125432906830}
-  spriterend: {fileID: 1851034125432906829}
+  animator: {fileID: 444759281079494044}
   zombie: {fileID: 1851034125432906817}
-  player: {fileID: 4675082974541497344, guid: 35f20312b2d80dd4fb5cc0a7fd2e436b, type: 3}
+  player: {fileID: 0}
 --- !u!61 &1851034125432906822
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -208,9 +184,29 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.28, y: -0.1}
   serializedVersion: 2
   m_Radius: 0.08
+--- !u!95 &444759281079494044
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851034125432906831}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cb8b304a133e84b828792d024e0c9e46, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

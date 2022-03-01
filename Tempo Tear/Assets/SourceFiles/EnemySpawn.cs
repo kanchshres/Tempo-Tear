@@ -7,7 +7,6 @@ public class EnemySpawn : MonoBehaviour
     public AudioSource audioSource;
     public Transform[] spawnPoints;
     public GameObject[] enemyPrefabs;
-    public SpriteRenderer spriterend;
     public float[] spawnTimes;
     private int spawnNumber;
     public bool testing;
