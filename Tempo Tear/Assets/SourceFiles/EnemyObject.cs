@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyObject : MonoBehaviour
 {
+    // Movement Variables
     public float beatTempo;
     private float speed;
     bool inRange = false;
@@ -12,31 +13,22 @@ public class EnemyObject : MonoBehaviour
     public Animator animator;
     public Zombie zombie;
     private bool spawnedLeft;
-    int side = 0;
-
-    // Attack Variables
-    public Player player;
+    char location = 'l';
 
 
     // Start is called before the first frame update
     void Start()
     {
-
         speed = beatTempo / 60f;
 
-        // Flip zombie to correct position
+        // Flip zombie to correct orientation
         if (transform.position.x > 0)
         {
             transform.localRotation = Quaternion.Euler(0, 180, 0);
-            spawnedLeft = false;
-        }
-        else
-        {
-            spawnedLeft = true;
-            side = 1;
+            location = 'r';
         }
 
-        GetComponent<Zombie>().SetLocation(side);
+        //GetComponent<Zombie>().SetLocation(location);
     }
 
 

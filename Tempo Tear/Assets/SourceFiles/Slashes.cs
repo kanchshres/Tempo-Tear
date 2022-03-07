@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class Slashes : MonoBehaviour
 {
-    private Vector3 starting;
-    // Start is called before the first frame update
+    // Initialization
     void Start()
     {
+        // Starting position
+        Vector3 starting;
+
+        // Checks if pattern spawned on the right
         if (transform.position.x > 0)
         {
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
             starting = new Vector3(transform.position.x - 1.2f, -1f, 0f);
         }
+        // Checks if pattern spawned on the left
         else
         {
             starting = new Vector3(transform.position.x + 1.2f, -1f, 0f);
         }
         
+        // Moves pattern to starting position
         transform.position = starting;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

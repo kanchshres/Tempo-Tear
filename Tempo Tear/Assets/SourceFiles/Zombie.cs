@@ -5,71 +5,77 @@ using UnityEngine;
 public class Zombie : MonoBehaviour
 {
     // Health & Slash Variables
-    public int maxHealth = 20;
+    private int maxHealth = 20;
     public int currentHealth;
     public int slashPattern;
+    public int enemyNum;
+
+    // Movement Variables
+    public float beatTempo;
+    private float speed;
+    bool inRange = false;
 
     // Attack Variables
-    public Player player;
-    public int attackDamage = 20;
     public LayerMask playerLayer;
-    bool isAttacking = false;
+    public int numOfCollisions = 0;
 
     // Animator Variable
     public Animator animator;
+    public char location = 'l';
 
-    // Location Variable
-    int location;
 
     // Initialization
     void Awake()
     {
         // Set zombie's max health and slash pattern
         currentHealth = maxHealth;
-        slashPattern = Random.Range(1, 4);
+        slashPattern = Random.Range(1, 5);
+
+        // Set zombie's speed and location
+        speed = beatTempo / 60f;
+        if (transform.position.x > 0)
+        {
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
+            location = 'r';
+        }
     }
 
 
     // Update is called once per frame
     void Update()
     {
-
+        // Moves zombie
+        if (0 < currentHealth && inRange == false)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player").transform.position,
+            speed * Time.deltaTime);
+        }
     }
 
 
-    // Gets the Zombie's location of leftside or rightside
-    public int GetLocation()
-    {
-        return location;
-    }
-
-
-    // Gets the Zombie's specific slash pattern
-    public int GetSlashPattern()
-    {
-        return slashPattern;
-    }
-
-
-    // Zombie attacks player
+    /* Zombie attacks player */
     public void Attack()
     {
         animator.SetTrigger("Attack");
         ScoreSetter.multiplier = 1;
     }
 
-
-    // Sets the Zombie's location of leftside or rightside
-    public void SetLocation(int side)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        location = side;
+        numOfCollisions++;
+        if (collision.gameObject.tag == "Player")
+        {
+            inRange = true;
+            Attack();
+        }
     }
+    /* Zombie attacks player */
 
 
     // Zombie takes damage
     public void TakeDamage(int damage, int cutType)
     {
-        // Checks if cut type 
+        // Checks if cut type matches slash pattern
         if (cutType == slashPattern)
         {
             currentHealth -= damage;
@@ -79,19 +85,21 @@ public class Zombie : MonoBehaviour
                 Die();
             }
         }
-        ScoreSetter.score += 300 * ScoreSetter.multiplier;
-        ScoreSetter.multiplier++;
     }
 
 
     // Zombie dies
     void Die()
     {
-        // Die animation
-        animator.SetBool("IsDead", true);
-
         // Disable enemy
         this.enabled = false;
+
+        // Die animation
+        animator.SetBool("IsDead", true);
+        
+        // Increase score
+        ScoreSetter.score += 300 * ScoreSetter.multiplier;
+        ScoreSetter.multiplier++;
     }
 
 

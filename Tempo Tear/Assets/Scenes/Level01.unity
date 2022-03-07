@@ -134,12 +134,12 @@ GameObject:
   - component: {fileID: 42424639}
   - component: {fileID: 42424640}
   m_Layer: 0
-  m_Name: back
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &42424639
 Transform:
   m_ObjectHideFlags: 0
@@ -148,11 +148,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 42424638}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0153, y: -0.023, z: 10}
-  m_LocalScale: {x: 0.49966058, y: 0.57835, z: 1}
+  m_LocalPosition: {x: -400.00482, y: -225.00719, z: 0}
+  m_LocalScale: {x: 0.15614393, y: 0.18073438, z: 0.3125}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1888877838}
+  m_Father: {fileID: 282303413}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &42424640
@@ -299,10 +299,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 42424639}
   - {fileID: 1756662232}
   - {fileID: 1654413665}
+  - {fileID: 1888877838}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -388,7 +390,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 282303413}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -600,7 +602,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1858861143
 GameObject:
@@ -729,7 +731,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1858861146
 MonoBehaviour:
@@ -823,13 +825,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888877835}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -400, y: -225, z: -3.125}
+  m_LocalScale: {x: 0.3125, y: 0.3125, z: 0.3125}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 42424639}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Children: []
+  m_Father: {fileID: 282303413}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2065384320
 GameObject:
@@ -864,9 +865,6 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 1822550889}
   - {fileID: 471530104}
-  enemyPrefabs:
-  - {fileID: 1851034125432906831, guid: c3d2bca6d32700b40a4cab8d1446f225, type: 3}
-  slashPatterns: {fileID: 5910220833161894949, guid: 3f8e7282f79764c91a6d9b463976051d, type: 3}
   spawnTimes:
   - 49.75
   - 52.1
@@ -920,6 +918,9 @@ MonoBehaviour:
   - 107.3
   - 108.45
   - 160
+  enemyPrefabs:
+  - {fileID: 1851034125432906831, guid: c3d2bca6d32700b40a4cab8d1446f225, type: 3}
+  slashPatterns: {fileID: 5910220833161894949, guid: 3f8e7282f79764c91a6d9b463976051d, type: 3}
   testing: 0
   testNumber: 45
 --- !u!4 &2065384322
@@ -937,7 +938,7 @@ Transform:
   - {fileID: 1822550889}
   - {fileID: 471530104}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1101204805622197820
 PrefabInstance:
@@ -964,7 +965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1101204806200735581, guid: 56a32ece9e9e133458f4722456f227c0, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1101204806200735581, guid: 56a32ece9e9e133458f4722456f227c0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1057,7 +1058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4675082974541497346, guid: 35f20312b2d80dd4fb5cc0a7fd2e436b, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4675082974541497346, guid: 35f20312b2d80dd4fb5cc0a7fd2e436b, type: 3}
       propertyPath: m_LocalScale.z

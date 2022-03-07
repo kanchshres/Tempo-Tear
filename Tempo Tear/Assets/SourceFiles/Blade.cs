@@ -65,6 +65,7 @@ public class Blade : MonoBehaviour
     // Enable slashing
     void StartSlashing()
     {
+        positions.Clear();
         isSlashing = true;
         rigidBody.position = cam.ScreenToWorldPoint(Input.mousePosition);
         transform.position = rigidBody.position;
@@ -83,7 +84,6 @@ public class Blade : MonoBehaviour
             player.Slash(cutType);
         }
 
-        positions.Clear();
         isSlashing = false;
         currentTrail.transform.SetParent(null);
         Destroy(currentTrail, .5f);

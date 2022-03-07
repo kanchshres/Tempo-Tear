@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1851034125432906828}
   - component: {fileID: 1851034125432906829}
   - component: {fileID: 1851034125432906817}
-  - component: {fileID: 1851034125432906816}
   - component: {fileID: 1851034125432906822}
   - component: {fileID: 1851034125432906823}
   - component: {fileID: 5920111777917587286}
@@ -77,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 318192293
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2064820169, guid: 4b55281a259874b148c187c95e7d7320, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -102,31 +101,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05d565358e79b4ab49c2862a33576e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
   currentHealth: 0
   slashPattern: 0
-  player: {fileID: 0}
-  attackDamage: 20
+  beatTempo: 135
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  numOfCollisions: 0
   animator: {fileID: 444759281079494044}
---- !u!114 &1851034125432906816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1851034125432906831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25b49180854494fc5a9b33684fcbfa92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  beatTempo: 135
-  animator: {fileID: 444759281079494044}
-  zombie: {fileID: 1851034125432906817}
-  player: {fileID: 0}
+  location: 108
 --- !u!61 &1851034125432906822
 BoxCollider2D:
   m_ObjectHideFlags: 0

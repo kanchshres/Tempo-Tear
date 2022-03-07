@@ -5,16 +5,16 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Health Variables
-    public int maxHealth = 70;
+    int maxHealth = 70;
     int currentHealth;
     public HealthBar healthBar;
+    int numOfCollisions;
 
     // Attack Variables
     public Transform attackPoint;
     public float attackRange = 2f;
     public int attackDamage = 20;
     public LayerMask enemyLayer;
-    int numOfCols = 0;
 
     // Animator Variable
     public Animator animator;
@@ -43,26 +43,53 @@ public class Player : MonoBehaviour
     // Player slashes 
     public void Slash(int cutType)
     {
+        bool hitEnemy = false;
+
         // Detect enemies in range of slash
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
 
-        // Damage corresponding enemies
-        int side = 0;
-        foreach(Collider2D enemy in hitEnemies)
+        // Find corresponding enemies
+        char enemyLoc = 'r';
+        if (enemies.Length != 0)
         {
-            // Checks if cutType corresponds to Zombie's slash pattern
-            int cutRequired = enemy.GetComponent<Zombie>().GetSlashPattern();
-            cutType = cutRequired; // Temp
-            if (cutType == cutRequired)
+            Collider2D corEnemy = enemies[0];
+            int corEnemyNum = 100;
+            int enemyNum;
+            foreach (Collider2D enemy in enemies)
             {
-                enemy.GetComponent<Zombie>().TakeDamage(attackDamage, cutType);
-                side = enemy.GetComponent<Zombie>().GetLocation();
-                break;
+                // Checks if cut type corresponds to Zombie's slash pattern
+                int cutRequired = enemy.GetComponent<Zombie>().slashPattern;
+                if (cutType == cutRequired)
+                {
+                    hitEnemy = true;
+                    enemyNum = enemy.GetComponent<Zombie>().enemyNum;
+                    if (enemyNum < corEnemyNum)
+                    {
+                        corEnemy = enemy;
+                        corEnemyNum = enemyNum;
+                    }
+                }
             }
+            corEnemy.GetComponent<Zombie>().TakeDamage(attackDamage, cutType);
+            enemyLoc = corEnemy.GetComponent<Zombie>().location;
+            hitEnemy = true;
         }
+        
 
-        // Play an attack animation
-        if (side == 1)
+        PlayAttackAnimation(enemyLoc);
+
+        // Reset score if player did not hit any enemy
+        if (hitEnemy == false)
+        {
+            ScoreSetter.multiplier = 1;
+        }
+    }
+
+
+    // Play an attack animation
+    void PlayAttackAnimation(char enemyLoc)
+    {
+        if (enemyLoc == 'l')
         {
             transform.localRotation = Quaternion.Euler(0, 180, 0);
             transform.position = new Vector3(-0.24f, transform.position.y, transform.position.z);
@@ -74,7 +101,6 @@ public class Player : MonoBehaviour
         }
         animator.SetTrigger("Slash");
     }
-
 
     // Draws Attack Range For Scene ONLY
     private void OnDrawGizmosSelected()
@@ -121,11 +147,11 @@ public class Player : MonoBehaviour
     // Determines whether or not player is hit
     void OnTriggerEnter2D(Collider2D collision)
     {
-        numOfCols += 1;
-        if (collision.gameObject.tag == "Enemy" && numOfCols == 2)
+        numOfCollisions++;
+        if (collision.gameObject.tag == "Enemy" && 2 == numOfCollisions)
         {
             TakeDamage(20);
-            numOfCols = 0;
+            numOfCollisions = 0;
         }
     }
 }
