@@ -52,39 +52,40 @@ public class EnemySpawn : MonoBehaviour
         int randEnemy = Random.Range(0, enemyPrefabs.Length);
         int randSpawnPoint = Random.Range(0, spawnPoints.Length);
 
-        /// Test code
-        if (testing == true)
-        {
-            Instantiate(enemyPrefabs[randEnemy], spawnPoints[1].position, transform.rotation);
-        }
-        /// Real code
-        else
-        {
-            // Spawn Zombie
-            GameObject zombie = Instantiate(enemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation) as GameObject;
-            int slashType = zombie.GetComponent<Zombie>().slashPattern;
-            zombie.GetComponent<Zombie>().enemyNum = spawnNumber;
+        // Spawn Enemy
+        GameObject enemy = Instantiate(enemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation) as GameObject;
+        enemy.GetComponent<Enemy>().enemyNum = spawnNumber;
 
+        // Spawn appropriate slash patterns
+        for (int i = 0; i < enemy.GetComponent<Enemy>().slashPatterns.Count; i++)
+        {
+            // Set up
+            int slashType = enemy.GetComponent<Enemy>().slashPatterns[i];
+            GameObject patternObject = enemy.GetComponent<GameObject>();
+            
             // Checks if slash pattern is horizontal
             if (slashType == 1)
             {
-                Instantiate(slashPatterns.transform.GetChild(2).gameObject, zombie.transform);
+                patternObject = Instantiate(slashPatterns.transform.GetChild(2).gameObject, enemy.transform);
             }
             // Checks if slash pattern is vertical
             else if (slashType == 2)
             {
-                Instantiate(slashPatterns.transform.GetChild(3).gameObject, zombie.transform);
+                patternObject = Instantiate(slashPatterns.transform.GetChild(3).gameObject, enemy.transform);
             }
             // Checks if slash pattern is diagonal left
             else if (slashType == 3)
             {
-                Instantiate(slashPatterns.transform.GetChild(0).gameObject, zombie.transform);
+                patternObject = Instantiate(slashPatterns.transform.GetChild(0).gameObject, enemy.transform);
             }
             // Checks if slash pattern is diagonal right
             else if (slashType == 4)
             {
-                Instantiate(slashPatterns.transform.GetChild(1).gameObject, zombie.transform);
+                patternObject = Instantiate(slashPatterns.transform.GetChild(1).gameObject, enemy.transform);
             }
+
+            // Keep track of pattern objects
+            enemy.GetComponent<Enemy>().patternObjects.Add(patternObject);
         }
     }
 }

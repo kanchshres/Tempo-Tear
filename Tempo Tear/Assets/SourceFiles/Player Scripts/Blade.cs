@@ -19,7 +19,6 @@ public class Blade : MonoBehaviour
     float minSlashMagnitude = 1.5f;
     List<Vector2> positions = new List<Vector2>();
 
-
     // Player Variables
     public Player player;
 

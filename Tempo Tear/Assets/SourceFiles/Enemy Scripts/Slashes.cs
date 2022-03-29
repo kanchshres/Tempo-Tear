@@ -25,4 +25,10 @@ public class Slashes : MonoBehaviour
         // Moves pattern to starting position
         transform.position = starting;
     }
+
+    // Deletes slash pattern from screen
+    public void DeletePattern()
+    {
+        Destroy(gameObject);
+    }
 }
