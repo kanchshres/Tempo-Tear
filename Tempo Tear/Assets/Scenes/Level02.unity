@@ -624,6 +624,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   animator: {fileID: 436889344}
+  player: {fileID: 436889341}
 --- !u!95 &436889344
 Animator:
   serializedVersion: 4
@@ -1520,7 +1521,7 @@ MonoBehaviour:
   - 160
   enemyPrefabs:
   - {fileID: 1851034125432906831, guid: c3d2bca6d32700b40a4cab8d1446f225, type: 3}
-  - {fileID: 4517179648502883747, guid: 2b7f771f8df1a8a4fb31c94deb4fb452, type: 3}
+  - {fileID: 2508594369631902653, guid: 0ee8fcdf8184336418fa161fd1cee662, type: 3}
   slashPatterns: {fileID: 5910220833161894949, guid: 3f8e7282f79764c91a6d9b463976051d, type: 3}
   testing: 0
   testNumber: 45

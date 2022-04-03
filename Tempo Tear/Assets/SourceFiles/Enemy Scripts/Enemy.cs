@@ -74,7 +74,11 @@ public class Enemy : MonoBehaviour
     // Set enemy to no longer be stunned
     public void NotStunned() 
     { 
-        isStunned = false; 
+        isStunned = false;
+        if (inRange == true)
+        {
+            Attack();
+        }
     }
 
 
@@ -129,10 +133,6 @@ public class Enemy : MonoBehaviour
 
         // Die animation
         animator.SetBool("IsDead", true);
-
-        // Increase score
-        ScoreSetter.score += 300 * ScoreSetter.multiplier;
-        ScoreSetter.multiplier++;
     }
 
 

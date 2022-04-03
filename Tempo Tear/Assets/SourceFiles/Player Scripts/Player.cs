@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     // Animator Variable
     public Animator animator;
 
+    // Player Object
+    public GameObject player;
+
 
     // Start is called before the first frame update
     void Start()
@@ -52,8 +55,6 @@ public class Player : MonoBehaviour
     // Player slashes 
     public void Slash(int cutType)
     {
-        bool hitEnemy = false;
-
         // Detect enemies in range of slash
         Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
 
@@ -62,10 +63,12 @@ public class Player : MonoBehaviour
         {
             // Find corresponding enemy
             Collider2D corEnemy = enemies[0];
-            int corEnemyNum = 100;
-            int enemyNum;
+            float corEnemyDist = 100;
+            float enemyDist;
+            bool hitEnemy = false;
             foreach (Collider2D enemy in enemies)
             {
+                // Iterate through all slash patterns the enemy has
                 for (int i = 0; i < enemy.GetComponent<Enemy>().slashPatterns.Count; i++)
                 {
                     // Checks if cut type corresponds to at least one of Enemy's slash patterns
@@ -73,35 +76,44 @@ public class Player : MonoBehaviour
                     int cutRequired = slashPattern;
                     if (cutType == cutRequired)
                     {
-                        enemyNum = enemy.GetComponent<Enemy>().enemyNum;
-                        if (enemyNum < corEnemyNum && enemy.GetComponent<Enemy>().isDead == false)
+                        // Check for the closest enemy to player
+                        enemyDist = Vector3.Distance(enemy.gameObject.transform.position, player.transform.position);
+                        if (enemyDist < corEnemyDist && enemy.GetComponent<Enemy>().isDead == false)
                         {
                             corEnemy = enemy;
-                            corEnemyNum = enemyNum;
+                            corEnemyDist = enemyDist;
                             hitEnemy = true;
                         }
                         break;
                     }
                 }
             }
-            // Damage corresponding enemy
-            corEnemy.GetComponent<Enemy>().TakeDamage(20, cutType);
-            enemyLoc = corEnemy.GetComponent<Enemy>().location;
+
+            // Check if an enemy was hit
+            if (hitEnemy == true)
+            {
+                // Damage corresponding enemy
+                corEnemy.GetComponent<Enemy>().TakeDamage(20, cutType);
+                enemyLoc = corEnemy.GetComponent<Enemy>().location;
+
+                // Increase score & multiplier
+                ScoreSetter.score += 300 * ScoreSetter.multiplier;
+                ScoreSetter.multiplier++;
+            }
+            else
+            {
+                // Reset multiplier
+                ScoreSetter.multiplier = 1;
+            }
         }
         
         // Play attack animation
         OrientatePlayer(enemyLoc);
         animator.SetTrigger("Slash");
-
-        // Reset score if player did not hit any enemy
-        if (hitEnemy == false)
-        {
-            ScoreSetter.multiplier = 1;
-        }
     }
 
 
-    // Draws Attack Range For Scene ONLY
+    // Draws Attack Range For SCENE VIEW ONLY
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null)

@@ -1687,6 +1687,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   animator: {fileID: 1997073478}
+  player: {fileID: 1997073477}
 --- !u!61 &1997073484
 BoxCollider2D:
   m_ObjectHideFlags: 0
