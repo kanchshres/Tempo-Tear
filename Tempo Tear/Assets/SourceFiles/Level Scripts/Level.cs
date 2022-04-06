@@ -23,7 +23,7 @@ public class Level : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(audioSource.time);
+        // Check if level is completed
         if (audioSource.time > endTime)
         {
             audioSource.Stop();
@@ -31,28 +31,17 @@ public class Level : MonoBehaviour
         }
 
         // Check what level is currently being played
-        bool scoreReset = false;
         if (SceneManager.GetActiveScene().name == "Level01")
         {
             level = 1;
-            scoreReset = true;
         }
         else if (SceneManager.GetActiveScene().name == "Level02")
         {
             level = 2;
-            scoreReset = true;
         }
         else if (SceneManager.GetActiveScene().name == "Level03")
         {
             level = 3;
-            scoreReset = true;
-        }
-
-        // Check if score needs to be reset
-        if (scoreReset == true)
-        {
-            ScoreSetter.score = 0;
-            ScoreSetter.multiplier = 1;
         }
     }
 }

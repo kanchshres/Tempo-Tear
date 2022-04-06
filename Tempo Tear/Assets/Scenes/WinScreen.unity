@@ -208,7 +208,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1765685498}
-        m_TargetAssemblyTypeName: DeathMenuButtons, Assembly-CSharp
+        m_TargetAssemblyTypeName: LevelOver, Assembly-CSharp
         m_MethodName: mainMenu
         m_Mode: 1
         m_Arguments:
@@ -630,7 +630,6 @@ GameObject:
   - component: {fileID: 1244690149}
   - component: {fileID: 1244690151}
   - component: {fileID: 1244690150}
-  - component: {fileID: 1244690152}
   m_Layer: 5
   m_Name: FinalScore
   m_TagString: Untagged
@@ -755,18 +754,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244690148}
   m_CullTransparentMesh: 1
---- !u!114 &1244690152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244690148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eda3237911ba53f47bec425d5054cab9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1565748625
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,7 +839,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1765685498}
-        m_TargetAssemblyTypeName: DeathMenuButtons, Assembly-CSharp
+        m_TargetAssemblyTypeName: LevelOver, Assembly-CSharp
         m_MethodName: retry
         m_Mode: 1
         m_Arguments:
@@ -1016,9 +1003,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1765685493}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6e00a6b5ea4cec4d923bb993c2fab25, type: 3}
+  m_Script: {fileID: 11500000, guid: d8b29dd9f364ae44f97eaccfe3267839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshH: {fileID: 1244690150}
 --- !u!1 &1790259056
 GameObject:
   m_ObjectHideFlags: 0
