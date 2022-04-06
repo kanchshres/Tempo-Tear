@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -165,6 +166,7 @@ public class Player : MonoBehaviour
         //this.enabled = false;
 
         // Show game over screen
+        SceneManager.LoadScene("DeathScreen");
     }
 
 

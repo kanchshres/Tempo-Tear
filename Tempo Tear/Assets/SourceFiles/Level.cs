@@ -27,6 +27,7 @@ public class Level : MonoBehaviour
         if (audioSource.time > endTime)
         {
             audioSource.Stop();
+            SceneManager.LoadScene("WinScreen");
         }
 
         // Check what level is currently being played
