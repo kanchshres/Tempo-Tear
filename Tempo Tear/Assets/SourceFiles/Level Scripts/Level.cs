@@ -16,8 +16,13 @@ public class Level : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Setup Music
         audioSource.time = startTime;
         audioSource.Play();
+
+        // Reset score
+        ScoreSetter.score = 0;
+        ScoreSetter.multiplier = 1;
     }
 
     // Update is called once per frame
@@ -27,7 +32,8 @@ public class Level : MonoBehaviour
         if (audioSource.time > endTime)
         {
             audioSource.Stop();
-            SceneManager.LoadScene("WinScreen");
+            LevelOver.win = true;
+            SceneManager.LoadScene("LevelOver");
         }
 
         // Check what level is currently being played

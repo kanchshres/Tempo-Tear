@@ -7,20 +7,34 @@ using TMPro;
 
 public class LevelOver : MonoBehaviour
 {
-    // Text Object
-    public TMPro.TextMeshProUGUI textMeshH;
+    // Score Variables
+    public TMPro.TextMeshProUGUI finalScore;
     private int score = ScoreSetter.score;
+
+
+    // Message Variables
+    public GameObject winMessage;
+    public GameObject loseMessage;
+    public static bool win;
 
 
     // Initialization
     void Start()
     {
-        // Display user's achieved score
-        textMeshH.SetText("Final score - " + score.ToString());
+        // Check which message to display
+        if (win == true)
+        {
+            winMessage.SetActive(true);
+            loseMessage.SetActive(false);
 
-        // Reset score
-        ScoreSetter.score = 0;
-        ScoreSetter.multiplier = 1;
+        } else
+        {
+            loseMessage.SetActive(true);
+            winMessage.SetActive(false);
+        }
+
+        // Display user's achieved score
+        finalScore.SetText("Final score - " + score.ToString());
     }
 
     // Moves to the scene that was just played
@@ -41,8 +55,8 @@ public class LevelOver : MonoBehaviour
             
     }
 
-    // Moves to the "Menu" scene
-    public void mainMenu()
+    // Moves to the "LevelSelect" scene
+    public void levelSelect()
     {
         SceneManager.LoadScene("Menu");
     }

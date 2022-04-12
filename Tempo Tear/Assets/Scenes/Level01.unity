@@ -1466,7 +1466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1858861144}
   startTime: 50
-  endTime: 130
+  endTime: 115
 --- !u!1 &1888877835
 GameObject:
   m_ObjectHideFlags: 0

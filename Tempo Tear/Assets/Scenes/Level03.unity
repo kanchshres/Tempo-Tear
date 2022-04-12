@@ -1168,7 +1168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1243206198}
   startTime: 50
-  endTime: 130
+  endTime: 115
 --- !u!4 &1243206200
 Transform:
   m_ObjectHideFlags: 0

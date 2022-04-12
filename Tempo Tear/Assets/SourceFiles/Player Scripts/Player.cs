@@ -31,12 +31,6 @@ public class Player : MonoBehaviour
     }
 
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-
     // Orientates player to enemy's location
     void OrientatePlayer(char enemyLoc)
     {
@@ -160,14 +154,8 @@ public class Player : MonoBehaviour
     // Player dies
     void Die()
     {
-        // Play die animation
-
-        // Disable controls
-        //this.enabled = false;
-
         // Show game over screen
-        SceneManager.LoadScene("DeathScreen");
+        LevelOver.win = false;
+        SceneManager.LoadScene("LevelOver");
     }
-
-
 }
