@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     // Player Object
     public GameObject player;
 
+    public EnemySpawn enemySpawnRef;
 
     // Start is called before the first frame update
     void Start()

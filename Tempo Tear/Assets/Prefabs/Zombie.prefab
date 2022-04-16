@@ -102,13 +102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05d565358e79b4ab49c2862a33576e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slashPattern: 0
-  enemyNum: 0
-  isDead: 0
-  beatTempo: 135
-  numOfCollisions: 0
-  animator: {fileID: 444759281079494044}
-  location: 108
   enemy: {fileID: -927313465351532355}
 --- !u!114 &-927313465351532355
 MonoBehaviour:
@@ -123,13 +116,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  slashPattern: 0
+  slashPatterns: 
+  patternObjects: []
   enemyNum: 0
-  isDead: 0
+  enemyType: 0
   beatTempo: 135
+  isStunned: 0
+  isDead: 0
   numOfCollisions: 0
   animator: {fileID: 444759281079494044}
   location: 108
+  beatIndicatorRef: {fileID: 0}
+  horizontal: {fileID: 21300000, guid: cc0da5cc8ca534143ab7fc992e73e48b, type: 3}
+  vertical: {fileID: 21300000, guid: 60e1937211f393349b7eda2f188e8a88, type: 3}
+  RDiag: {fileID: 21300000, guid: 790fb9c06c1fb6046bf0e6cd8a495574, type: 3}
+  LDiag: {fileID: 21300000, guid: 42c8f087080d6664f9f36e58cac16349, type: 3}
 --- !u!50 &5608400989956497618
 Rigidbody2D:
   serializedVersion: 4
