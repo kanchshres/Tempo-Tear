@@ -24,6 +24,12 @@ public class Slashes : MonoBehaviour
         
         // Moves pattern to starting position
         transform.position = starting;
+
+        // Set patterns to black if on level 1
+        if (Level.level == 1)
+        {
+            this.GetComponent<SpriteRenderer>().material.color = new Color(0, 0, 0);
+        }
     }
 
     // Deletes slash pattern from screen

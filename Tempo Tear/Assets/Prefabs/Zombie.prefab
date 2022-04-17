@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 1851034125432906831}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6, y: 0, z: 0}
-  m_LocalScale: {x: 1.3138738, y: 1.3138738, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -126,11 +126,6 @@ MonoBehaviour:
   numOfCollisions: 0
   animator: {fileID: 444759281079494044}
   location: 108
-  beatIndicatorRef: {fileID: 0}
-  horizontal: {fileID: 21300000, guid: cc0da5cc8ca534143ab7fc992e73e48b, type: 3}
-  vertical: {fileID: 21300000, guid: 60e1937211f393349b7eda2f188e8a88, type: 3}
-  RDiag: {fileID: 21300000, guid: 790fb9c06c1fb6046bf0e6cd8a495574, type: 3}
-  LDiag: {fileID: 21300000, guid: 42c8f087080d6664f9f36e58cac16349, type: 3}
 --- !u!50 &5608400989956497618
 Rigidbody2D:
   serializedVersion: 4

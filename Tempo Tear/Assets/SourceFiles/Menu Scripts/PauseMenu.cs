@@ -57,7 +57,7 @@ public class PauseMenu : MonoBehaviour
         }
         else if (Level.level == 2)
         {
-            SceneManager.LoadScene("level01");
+            SceneManager.LoadScene("level02");
         }
         else if (Level.level == 3)
         {
