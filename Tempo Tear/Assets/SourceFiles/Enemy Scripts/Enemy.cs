@@ -47,8 +47,9 @@ public class Enemy : MonoBehaviour
         // Moves enemy
         if (isDead == false && inRange == false && isStunned == false)
         {
-            transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player").transform.position,
-            speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, 
+            new Vector3(GameObject.Find("Player").transform.position.x, 
+            transform.position.y, transform.position.z), speed * Time.deltaTime);
         }
     }
 

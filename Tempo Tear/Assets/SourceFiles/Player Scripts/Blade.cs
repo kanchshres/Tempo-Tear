@@ -45,7 +45,10 @@ public class Blade : MonoBehaviour
             // Checks if user is not trying to slash
             else if (Input.GetMouseButtonUp(0))
             {
-                StopSlashing();
+                if (positions.Count != 0)
+                {
+                    StopSlashing();
+                }
             }
 
             // Checks if user is slashing
@@ -87,6 +90,7 @@ public class Blade : MonoBehaviour
             player.Slash(cutType);
         }
 
+        positions.Clear();
         isSlashing = false;
         currentTrail.transform.SetParent(null);
         Destroy(currentTrail, .5f);
