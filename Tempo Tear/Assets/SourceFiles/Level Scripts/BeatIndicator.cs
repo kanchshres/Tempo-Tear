@@ -21,11 +21,15 @@ public class BeatIndicator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       slider.value += 0.0017f;
-       sliderVal = (int) slider.value;
-       if (sliderVal == 1)
-       {
-           slider.value = 0;
-       }
+        // Check if game is in unpaused state
+       if (!PauseMenu.GameIsPaused)
+        {
+            slider.value += 0.0017f;
+            sliderVal = (int)slider.value;
+            if (sliderVal == 1)
+            {
+                slider.value = 0;
+            }
+        }
     }
 }

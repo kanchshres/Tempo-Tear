@@ -9,9 +9,11 @@ public class Level : MonoBehaviour
     public AudioSource audioSource;
     public float startTime;
     public float endTime;
+    public float pauseTime;
 
     // Level Variables
     public static int level;
+    public bool previousState = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,21 @@ public class Level : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Check if current game state is paused
+        if (PauseMenu.GameIsPaused && PauseMenu.GameIsPaused != previousState)
+        {
+            pauseTime = audioSource.time;
+            audioSource.Stop();
+            previousState = PauseMenu.GameIsPaused;
+        }
+        // Check if current game state is unpaused
+        else if (!PauseMenu.GameIsPaused && PauseMenu.GameIsPaused != previousState)
+        {
+            audioSource.Play();
+            audioSource.time = pauseTime;
+            previousState = PauseMenu.GameIsPaused;
+        }
+
         // Check if level is completed
         if (audioSource.time > endTime)
         {
