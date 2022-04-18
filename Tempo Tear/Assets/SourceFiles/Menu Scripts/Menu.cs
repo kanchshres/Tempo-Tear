@@ -61,7 +61,6 @@ public class Menu : MonoBehaviour
     // Moves to the scene selected 
     public void playGame(string level)
     {
-        //SceneManager.LoadScene(level);
         sceneLoader.GetComponent<SceneLoader>().LoadSelectedScene(level);
     }
 

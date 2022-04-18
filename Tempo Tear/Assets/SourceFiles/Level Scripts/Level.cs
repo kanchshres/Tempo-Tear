@@ -66,5 +66,9 @@ public class Level : MonoBehaviour
         {
             level = 3;
         }
+        else
+        {
+            level = 0;
+        }
     }
 }

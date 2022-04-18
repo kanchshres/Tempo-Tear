@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         // Moves enemy
-        if (isDead == false && inRange == false && isStunned == false)
+        if (isDead == false && inRange == false && isStunned == false && Level.level != 0)
         {
             transform.position = Vector3.MoveTowards(transform.position, 
             new Vector3(GameObject.Find("Player").transform.position.x, 

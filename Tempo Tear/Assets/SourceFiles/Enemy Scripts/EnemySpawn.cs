@@ -13,11 +13,13 @@ public class EnemySpawn : MonoBehaviour
     // Enemy Variables
     public GameObject[] enemyPrefabs;
     public GameObject slashPatterns;
+    private GameObject enemy;
+    private bool prevIsSkeleton;
+    private int prevSpawnPoint;
 
     // Indicator Variables
     public GameObject[] indicatorPrefabs;
     public Transform[] indicatorSpawnPoints;
-
 
     // Testing Variables
     public bool testing;
@@ -28,15 +30,16 @@ public class EnemySpawn : MonoBehaviour
     void Start()
     {
         spawnNumber = 0;
-
-        /// Test Code
-        if (testing == true)
-        {
-            spawnNumber = testNumber;
-            audioSource.time = spawnTimes[spawnNumber];
-        }
     }
 
+
+    /// Test code
+    void testcode()
+    {
+        spawnNumber = testNumber;
+        audioSource.time = spawnTimes[spawnNumber];
+        testing = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -44,59 +47,88 @@ public class EnemySpawn : MonoBehaviour
         // Checks when to to spawn enemies
         if (audioSource.time > spawnTimes[spawnNumber])
         {
-            Debug.Log(spawnNumber);
+            float difference = spawnTimes[spawnNumber + 1] - spawnTimes[spawnNumber];
             spawnNumber += 1;
-            Spawn();
+
+            Spawn(difference);
+        }
+
+        /// For testing purposes
+        if (testing == true)
+        {
+            testcode();
         }
     }
 
 
     // Spawn enemies
-    void Spawn()
+    void Spawn(float difference)
     {   
         // Set up
-        int randEnemy = Random.Range(0, enemyPrefabs.Length);
+        int randEnemy = 0;
         int randSpawnPoint = Random.Range(0, spawnPoints.Length);
-
-        // Spawn Enemy
-        GameObject enemy = Instantiate(enemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation) as GameObject;
-        enemy.GetComponent<Enemy>().enemyNum = spawnNumber;
+        GameObject indicatorObject;
         
-
-        // Spawn appropriate slash patterns
-        for (int i = 0; i < enemy.GetComponent<Enemy>().slashPatterns.Count; i++)
+        // Check if skeleton should be spawned
+        if (difference <= .3f && !prevIsSkeleton)
         {
-            // Set up
-            int slashType = enemy.GetComponent<Enemy>().slashPatterns[i];
-            GameObject patternObject = enemy.GetComponent<GameObject>();
+            randEnemy = 1;
+            prevSpawnPoint = randSpawnPoint;
+        }
 
-            // Indicator Variable
-            GameObject indicator = Instantiate(indicatorPrefabs[randSpawnPoint], indicatorSpawnPoints[randSpawnPoint].position, transform.rotation);
+        // Special case for skeleton spawn
+        if (prevIsSkeleton)
+        {
+            indicatorObject = Instantiate(indicatorPrefabs[prevSpawnPoint], indicatorSpawnPoints[prevSpawnPoint].position, transform.rotation);
+            enemy.GetComponent<Enemy>().indicatorObjects.Add(indicatorObject);
+            prevIsSkeleton = false;
+        } 
+        // Regular case
+        else
+        {
+            // Spawn Enemy
+            enemy = Instantiate(enemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation);
+            enemy.GetComponent<Enemy>().enemyNum = spawnNumber;
+            indicatorObject = Instantiate(indicatorPrefabs[randSpawnPoint], indicatorSpawnPoints[randSpawnPoint].position, transform.rotation);
 
-            // Checks if slash pattern is horizontal
-            if (slashType == 1)
+            // Set up for special case
+            if (randEnemy == 1)
             {
-                patternObject = Instantiate(slashPatterns.transform.GetChild(0).gameObject, enemy.transform);
+                prevIsSkeleton = true;
             }
-            // Checks if slash pattern is vertical
-            else if (slashType == 2)
+        
+            // Spawn appropriate slash patterns
+            for (int i = 0; i < enemy.GetComponent<Enemy>().slashPatterns.Count; i++)
             {
-                patternObject = Instantiate(slashPatterns.transform.GetChild(1).gameObject, enemy.transform);
-            }
-            // Checks if slash pattern is diagonal left
-            else if (slashType == 3)
-            {
-                patternObject = Instantiate(slashPatterns.transform.GetChild(2).gameObject, enemy.transform);
-            }
-            // Checks if slash pattern is diagonal right
-            else if (slashType == 4)
-            {
-                patternObject = Instantiate(slashPatterns.transform.GetChild(3).gameObject, enemy.transform);
-            }
+                // Set up
+                int slashType = enemy.GetComponent<Enemy>().slashPatterns[i];
+                GameObject patternObject = enemy.GetComponent<GameObject>();
 
-            // Keep track of pattern objects
-            enemy.GetComponent<Enemy>().patternObjects.Add(patternObject);
-            enemy.GetComponent<Enemy>().indicatorObjects.Add(indicator);
+                // Checks if slash pattern is horizontal
+                if (slashType == 1)
+                {
+                    patternObject = Instantiate(slashPatterns.transform.GetChild(0).gameObject, enemy.transform);
+                }
+                // Checks if slash pattern is vertical
+                else if (slashType == 2)
+                {
+                    patternObject = Instantiate(slashPatterns.transform.GetChild(1).gameObject, enemy.transform);
+                }
+                // Checks if slash pattern is diagonal left
+                else if (slashType == 3)
+                {
+                    patternObject = Instantiate(slashPatterns.transform.GetChild(2).gameObject, enemy.transform);
+                }
+                // Checks if slash pattern is diagonal right
+                else if (slashType == 4)
+                {
+                    patternObject = Instantiate(slashPatterns.transform.GetChild(3).gameObject, enemy.transform);
+                }
+
+                // Keep track of pattern and indicator objects
+                enemy.GetComponent<Enemy>().patternObjects.Add(patternObject);
+            }
+            enemy.GetComponent<Enemy>().indicatorObjects.Add(indicatorObject);
         }
     }
 }

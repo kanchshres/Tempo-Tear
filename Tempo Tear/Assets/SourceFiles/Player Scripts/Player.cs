@@ -93,10 +93,6 @@ public class Player : MonoBehaviour
                 // Damage corresponding enemy
                 corEnemy.GetComponent<Enemy>().TakeDamage(20, cutType);
                 enemyLoc = corEnemy.GetComponent<Enemy>().location;
-
-                // Increase score & multiplier
-                //ScoreSetter.score += 300 * ScoreSetter.multiplier;
-                //ScoreSetter.multiplier++;
             }
             else
             {
@@ -159,7 +155,6 @@ public class Player : MonoBehaviour
     {
         // Show game over screen
         LevelOver.win = false;
-        //sceneLoader.GetComponent<SceneLoader>().LoadSelectedScene("LevelOver");
         SceneManager.LoadScene("LevelOver");
     }
 }

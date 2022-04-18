@@ -50,17 +50,14 @@ public class LevelOver : MonoBehaviour
         if (Level.level == 1)
         {
             sceneLoader.GetComponent<SceneLoader>().LoadSelectedScene("level01");
-            //SceneManager.LoadScene("level01");
         }
         else if (Level.level == 2)
         {
             sceneLoader.GetComponent<SceneLoader>().LoadSelectedScene("level02");
-            //SceneManager.LoadScene("level02");
         }
         else if (Level.level == 3)
         {
             sceneLoader.GetComponent<SceneLoader>().LoadSelectedScene("level03");
-            //SceneManager.LoadScene("level03");
         }
 
     }
@@ -69,6 +66,5 @@ public class LevelOver : MonoBehaviour
     public void levelSelect()
     {
         sceneLoader.GetComponent<SceneLoader>().LoadSelectedScene("Menu");
-        //SceneManager.LoadScene("Menu");
     }
 }

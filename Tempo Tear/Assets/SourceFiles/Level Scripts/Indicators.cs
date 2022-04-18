@@ -25,11 +25,12 @@ public class Indicators : MonoBehaviour
     void Update()
     {
         // Move indicator until directly above diamond
-        if (transform.position.x != 0)
+        if (transform.position.x != 0 && Level.level != 0)
         {
             transform.position = Vector3.MoveTowards(transform.position,
             new Vector3(0, -1.235f, 0), speed * Time.deltaTime);
-        }
+
+        } 
     }
 
 
