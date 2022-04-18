@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Indicators : MonoBehaviour
 {
-    // Timer Variable
-    private int tut = 0;
-
+    private float speed = .33f;
 
     // Initialization
     private void Start()
@@ -15,6 +13,11 @@ public class Indicators : MonoBehaviour
         if (Level.level == 1)
         {
             this.GetComponent<SpriteRenderer>().material.color = new Color(0, 0, 0);
+            speed = .33f;
+        }
+        else if (Level.level == 2)
+        {
+            speed = .34f;
         }
     }
 
@@ -25,7 +28,7 @@ public class Indicators : MonoBehaviour
         if (transform.position.x != 0)
         {
             transform.position = Vector3.MoveTowards(transform.position,
-            new Vector3(0, -1.235f, 0), .33f * Time.deltaTime);
+            new Vector3(0, -1.235f, 0), speed * Time.deltaTime);
         }
     }
 
