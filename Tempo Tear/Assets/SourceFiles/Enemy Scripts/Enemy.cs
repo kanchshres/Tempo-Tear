@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour
     public List<int> slashPatterns;
     public List<GameObject> patternObjects;
 
+    // Indicator Variables
+    public List<GameObject> indicatorObjects;
+
     // Enemy Variables
     public int enemyNum;
     public int enemyType;
@@ -109,7 +112,7 @@ public class Enemy : MonoBehaviour
     }
 
 
-    // Enemy loses corresponding slash pattern
+    // Enemy loses corresponding slash pattern and indicator
     void RemovePattern(int slashPattern)
     {
         for (int i = 0; i < slashPatterns.Count; i++)
@@ -118,6 +121,8 @@ public class Enemy : MonoBehaviour
             {
                 patternObjects[i].GetComponent<Slashes>().DeletePattern();
                 patternObjects.RemoveAt(i);
+                indicatorObjects[i].GetComponent<Indicators>().BeatHit();
+                indicatorObjects.RemoveAt(i);
                 break;
             }
         }
@@ -140,6 +145,10 @@ public class Enemy : MonoBehaviour
     // Deletes enemy from screen
     void DeleteEnemy()
     {
+        for (int i = 0; i < indicatorObjects.Count; i++)
+        {
+            indicatorObjects[i].GetComponent<Indicators>().DeleteIndicator();
+        }
         Destroy(gameObject);
     }
 }
