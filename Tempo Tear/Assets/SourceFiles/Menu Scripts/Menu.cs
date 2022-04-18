@@ -18,6 +18,9 @@ public class Menu : MonoBehaviour
     // Audio Variables
     public AudioMixer audioMixer;
 
+    // SceneLoader Variables
+    public GameObject sceneLoader;
+
     // Initialization
     void Start()
     {
@@ -58,7 +61,8 @@ public class Menu : MonoBehaviour
     // Moves to the scene selected 
     public void playGame(string level)
     {
-        SceneManager.LoadScene(level);
+        //SceneManager.LoadScene(level);
+        sceneLoader.GetComponent<SceneLoader>().LoadSelectedScene(level);
     }
 
 

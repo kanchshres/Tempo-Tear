@@ -5,8 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    // Pause Variables
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+
+    // SceneLoader Variables
+    public GameObject sceneLoader;
 
 
     // Update is called once per frame
@@ -32,8 +36,8 @@ public class PauseMenu : MonoBehaviour
     // Unpauses game and resumes play state
     public void Resume()
     {
-        Time.timeScale = 1f;
         GameIsPaused = false;
+        Time.timeScale = 1f;
         pauseMenuUI.SetActive(false);
     }
 
@@ -41,8 +45,8 @@ public class PauseMenu : MonoBehaviour
     // Pauses game and ceases play state
     void Pause()
     {
-        Time.timeScale = 0f;
         GameIsPaused = true;
+        Time.timeScale = 0f;
         pauseMenuUI.SetActive(true);
     }
 
@@ -50,26 +54,30 @@ public class PauseMenu : MonoBehaviour
     // Restarts the current level
     public void Retry()
     {
-        Resume();
         if (Level.level == 1)
         {
+            //sceneLoader.GetComponent<SceneLoader>().LoadSelectedScene("level01");
             SceneManager.LoadScene("level01");
         }
         else if (Level.level == 2)
         {
+            //sceneLoader.GetComponent<SceneLoader>().LoadSelectedScene("level02");
             SceneManager.LoadScene("level02");
         }
         else if (Level.level == 3)
         {
+            //sceneLoader.GetComponent<SceneLoader>().LoadSelectedScene("level03");
             SceneManager.LoadScene("level03");
         }
+        Resume();
     }
 
 
     // Exits the level to main menu
     public void QuitLevel()
     {
-        Resume();
+        //sceneLoader.GetComponent<SceneLoader>().LoadSelectedScene("Menu");
         SceneManager.LoadScene("Menu");
+        Resume();
     }
 }

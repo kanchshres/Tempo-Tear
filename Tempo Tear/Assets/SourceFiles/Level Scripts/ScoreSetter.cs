@@ -21,6 +21,6 @@ public class ScoreSetter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       textMeshH.SetText("  Score   " + score.ToString() + "\nMultiplier   " + multiplier.ToString());
+       textMeshH.SetText("Score " + score.ToString() + "\nX" + multiplier.ToString());
     }
 }

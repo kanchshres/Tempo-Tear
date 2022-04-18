@@ -20,8 +20,10 @@ public class Player : MonoBehaviour
 
     // Player Object
     public GameObject player;
-
     public EnemySpawn enemySpawnRef;
+
+    // SceneLoader Variables
+    public GameObject sceneLoader;
 
     // Start is called before the first frame update
     void Start()
@@ -157,6 +159,7 @@ public class Player : MonoBehaviour
     {
         // Show game over screen
         LevelOver.win = false;
+        //sceneLoader.GetComponent<SceneLoader>().LoadSelectedScene("LevelOver");
         SceneManager.LoadScene("LevelOver");
     }
 }

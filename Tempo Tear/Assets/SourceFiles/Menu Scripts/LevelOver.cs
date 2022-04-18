@@ -11,12 +11,13 @@ public class LevelOver : MonoBehaviour
     public TMPro.TextMeshProUGUI finalScore;
     private int score = ScoreSetter.score;
 
-
     // Message Variables
     public GameObject winMessage;
     public GameObject loseMessage;
     public static bool win;
 
+    // SceneLoader Variables
+    public GameObject sceneLoader;
 
     // Initialization
     void Start()
@@ -34,7 +35,7 @@ public class LevelOver : MonoBehaviour
         }
 
         // Display user's achieved score
-        finalScore.SetText("Final score - " + score.ToString());
+        finalScore.SetText("FINAL SCORE\n" + score.ToString());
     }
 
     // Moves to the scene that was just played
@@ -42,22 +43,26 @@ public class LevelOver : MonoBehaviour
     {
         if (Level.level == 1)
         {
-            SceneManager.LoadScene("Level01");
-        } 
+            sceneLoader.GetComponent<SceneLoader>().LoadSelectedScene("level01");
+            //SceneManager.LoadScene("level01");
+        }
         else if (Level.level == 2)
         {
-            SceneManager.LoadScene("Level02");
+            sceneLoader.GetComponent<SceneLoader>().LoadSelectedScene("level02");
+            //SceneManager.LoadScene("level02");
         }
         else if (Level.level == 3)
         {
-            SceneManager.LoadScene("Level03");
+            sceneLoader.GetComponent<SceneLoader>().LoadSelectedScene("level03");
+            //SceneManager.LoadScene("level03");
         }
-            
+
     }
 
     // Moves to the "LevelSelect" scene
     public void levelSelect()
     {
-        SceneManager.LoadScene("Menu");
+        sceneLoader.GetComponent<SceneLoader>().LoadSelectedScene("Menu");
+        //SceneManager.LoadScene("Menu");
     }
 }
