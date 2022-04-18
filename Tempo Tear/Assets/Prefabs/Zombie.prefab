@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 1851034125432906831}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6, y: 0, z: 0}
-  m_LocalScale: {x: 1.3138738, y: 1.3138738, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -102,13 +102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05d565358e79b4ab49c2862a33576e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slashPattern: 0
-  enemyNum: 0
-  isDead: 0
-  beatTempo: 135
-  numOfCollisions: 0
-  animator: {fileID: 444759281079494044}
-  location: 108
   enemy: {fileID: -927313465351532355}
 --- !u!114 &-927313465351532355
 MonoBehaviour:
@@ -123,10 +116,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  slashPattern: 0
+  slashPatterns: 
+  patternObjects: []
   enemyNum: 0
+  enemyType: 0
+  beatTempo: 140
+  isStunned: 0
   isDead: 0
-  beatTempo: 135
   numOfCollisions: 0
   animator: {fileID: 444759281079494044}
   location: 108
@@ -168,7 +164,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.28, y: 1.28}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

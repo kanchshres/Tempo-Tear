@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cf2ca0917a452304084d386001e30088
+guid: 2967937c0ad84b44c967794a29dbc9a0
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,8 +9,9 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Kill The Noise
-  fallbackFontReferences: []
+  - The Last Shuriken
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 6177ba3fca6ec884da89959ecd1df852, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

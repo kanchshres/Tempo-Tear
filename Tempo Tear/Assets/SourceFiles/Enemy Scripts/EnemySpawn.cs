@@ -39,6 +39,7 @@ public class EnemySpawn : MonoBehaviour
         // Checks when to to spawn enemies
         if (audioSource.time > spawnTimes[spawnNumber])
         {
+            Debug.Log(spawnNumber);
             spawnNumber += 1;
             Spawn();
         }
@@ -66,22 +67,22 @@ public class EnemySpawn : MonoBehaviour
             // Checks if slash pattern is horizontal
             if (slashType == 1)
             {
-                patternObject = Instantiate(slashPatterns.transform.GetChild(2).gameObject, enemy.transform);
+                patternObject = Instantiate(slashPatterns.transform.GetChild(0).gameObject, enemy.transform);
             }
             // Checks if slash pattern is vertical
             else if (slashType == 2)
             {
-                patternObject = Instantiate(slashPatterns.transform.GetChild(3).gameObject, enemy.transform);
+                patternObject = Instantiate(slashPatterns.transform.GetChild(1).gameObject, enemy.transform);
             }
             // Checks if slash pattern is diagonal left
             else if (slashType == 3)
             {
-                patternObject = Instantiate(slashPatterns.transform.GetChild(0).gameObject, enemy.transform);
+                patternObject = Instantiate(slashPatterns.transform.GetChild(2).gameObject, enemy.transform);
             }
             // Checks if slash pattern is diagonal right
             else if (slashType == 4)
             {
-                patternObject = Instantiate(slashPatterns.transform.GetChild(1).gameObject, enemy.transform);
+                patternObject = Instantiate(slashPatterns.transform.GetChild(3).gameObject, enemy.transform);
             }
 
             // Keep track of pattern objects

@@ -5,11 +5,11 @@ using UnityEngine;
 public class Skeleton : MonoBehaviour
 {
     // Health Variable
-    private int maxHealth = 60;
+    private int maxHealth = 40;
 
     // Enemy Variable
     public Enemy enemy;
-    private int enemyLevel = 3;
+    private int enemyLevel = 2;
 
     // Initialization
     void Awake()

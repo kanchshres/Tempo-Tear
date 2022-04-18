@@ -34,22 +34,29 @@ public class Blade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Checks if user is trying to slash
-        if (Input.GetMouseButtonDown(0))
+        // Check if game is in unpaused state
+        if (!PauseMenu.GameIsPaused)
         {
-            StartSlashing();
-        }
-        // Checks if user is not trying to slash
-        else if (Input.GetMouseButtonUp(0))
-        {
-            StopSlashing();
-        }
+            // Checks if user is trying to slash
+            if (Input.GetMouseButtonDown(0))
+            {
+                StartSlashing();
+            }
+            // Checks if user is not trying to slash
+            else if (Input.GetMouseButtonUp(0))
+            {
+                if (positions.Count != 0)
+                {
+                    StopSlashing();
+                }
+            }
 
-        // Checks if user is slashing
-        if (isSlashing)
-        {
-            UpdateBlade();
-        }
+            // Checks if user is slashing
+            if (isSlashing)
+            {
+                UpdateBlade();
+            }
+        } 
     }
 
     // Update blade
@@ -83,6 +90,7 @@ public class Blade : MonoBehaviour
             player.Slash(cutType);
         }
 
+        positions.Clear();
         isSlashing = false;
         currentTrail.transform.SetParent(null);
         Destroy(currentTrail, .5f);

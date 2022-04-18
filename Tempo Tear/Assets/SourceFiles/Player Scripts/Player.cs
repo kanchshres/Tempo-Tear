@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -19,7 +20,10 @@ public class Player : MonoBehaviour
 
     // Player Object
     public GameObject player;
+    public EnemySpawn enemySpawnRef;
 
+    // SceneLoader Variables
+    public GameObject sceneLoader;
 
     // Start is called before the first frame update
     void Start()
@@ -27,12 +31,6 @@ public class Player : MonoBehaviour
         // Set player's max health
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
 
@@ -159,13 +157,9 @@ public class Player : MonoBehaviour
     // Player dies
     void Die()
     {
-        // Play die animation
-
-        // Disable controls
-        //this.enabled = false;
-
         // Show game over screen
+        LevelOver.win = false;
+        //sceneLoader.GetComponent<SceneLoader>().LoadSelectedScene("LevelOver");
+        SceneManager.LoadScene("LevelOver");
     }
-
-
 }
