@@ -14,6 +14,11 @@ public class EnemySpawn : MonoBehaviour
     public GameObject[] enemyPrefabs;
     public GameObject slashPatterns;
 
+    // Indicator Variables
+    public GameObject[] indicatorPrefabs;
+    public Transform[] indicatorSpawnPoints;
+
+
     // Testing Variables
     public bool testing;
     public int testNumber;
@@ -56,6 +61,7 @@ public class EnemySpawn : MonoBehaviour
         // Spawn Enemy
         GameObject enemy = Instantiate(enemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation) as GameObject;
         enemy.GetComponent<Enemy>().enemyNum = spawnNumber;
+        
 
         // Spawn appropriate slash patterns
         for (int i = 0; i < enemy.GetComponent<Enemy>().slashPatterns.Count; i++)
@@ -63,7 +69,10 @@ public class EnemySpawn : MonoBehaviour
             // Set up
             int slashType = enemy.GetComponent<Enemy>().slashPatterns[i];
             GameObject patternObject = enemy.GetComponent<GameObject>();
-            
+
+            // Indicator Variable
+            GameObject indicator = Instantiate(indicatorPrefabs[randSpawnPoint], indicatorSpawnPoints[randSpawnPoint].position, transform.rotation);
+
             // Checks if slash pattern is horizontal
             if (slashType == 1)
             {
@@ -87,6 +96,7 @@ public class EnemySpawn : MonoBehaviour
 
             // Keep track of pattern objects
             enemy.GetComponent<Enemy>().patternObjects.Add(patternObject);
+            enemy.GetComponent<Enemy>().indicatorObjects.Add(indicator);
         }
     }
 }

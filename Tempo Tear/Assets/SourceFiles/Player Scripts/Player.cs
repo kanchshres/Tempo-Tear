@@ -95,8 +95,8 @@ public class Player : MonoBehaviour
                 enemyLoc = corEnemy.GetComponent<Enemy>().location;
 
                 // Increase score & multiplier
-                ScoreSetter.score += 300 * ScoreSetter.multiplier;
-                ScoreSetter.multiplier++;
+                //ScoreSetter.score += 300 * ScoreSetter.multiplier;
+                //ScoreSetter.multiplier++;
             }
             else
             {
