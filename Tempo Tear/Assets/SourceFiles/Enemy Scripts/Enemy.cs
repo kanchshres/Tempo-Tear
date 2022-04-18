@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour
     public int enemyType;
 
     // Movement Variables
-    public float beatTempo;
     private float speed;
 
     // Combat Variables
@@ -30,12 +29,21 @@ public class Enemy : MonoBehaviour
     public Animator animator;
     public char location = 'l';
 
-
     // Initialization
     void Awake()
     {
+        int levelBPM = 0;
         // Set enemy's speed and location
-        speed = beatTempo / 60f;
+        if (Level.level == 1)
+        {
+            levelBPM = 135;
+        }
+        else if (Level.level == 2)
+        {
+            levelBPM = 140;
+        }
+        speed = levelBPM / 60f;
+
         if (transform.position.x > 0)
         {
             transform.localRotation = Quaternion.Euler(0, 180, 0);
