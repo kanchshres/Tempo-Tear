@@ -70,7 +70,7 @@ public class EnemySpawn : MonoBehaviour
         GameObject indicatorObject;
         
         // Check if skeleton should be spawned
-        if (difference <= .3f && !prevIsSkeleton)
+        if (difference <= .3f && !prevIsSkeleton && Level.level == 2)
         {
             randEnemy = 1;
             prevSpawnPoint = randSpawnPoint;
