@@ -1369,7 +1369,7 @@ MonoBehaviour:
   indicatorSpawnPoints:
   - {fileID: 2120967397}
   - {fileID: 278954640}
-  testing: 1
+  testing: 0
   testNumber: 45
 --- !u!4 &617659119
 Transform:
