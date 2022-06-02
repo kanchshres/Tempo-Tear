@@ -1,5 +1,6 @@
 # TEMPO TEAR
 <img width="500" alt="image" src="https://user-images.githubusercontent.com/52114668/171697884-dcd0f6f7-1dee-45b5-a979-9d2fcbc1e905.png">
+A rhythm-based hack-n-slash created by Vansh Prawar, Alexander Susilo, and Kanchan Shrestha using Unity for CISC 226.
 
 ## Summary
 In Tempo Tear, you are a groovy samurai who must make their last stand against waves of enemies trying to kill his "vibe." Slash your way to victory but stay on rhythm!
