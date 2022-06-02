@@ -1,5 +1,5 @@
 # TEMPO TEAR
-<img width="963" alt="image" src="https://user-images.githubusercontent.com/52114668/171697884-dcd0f6f7-1dee-45b5-a979-9d2fcbc1e905.png">
+<img width="500" alt="image" src="https://user-images.githubusercontent.com/52114668/171697884-dcd0f6f7-1dee-45b5-a979-9d2fcbc1e905.png">
 
 ## Summary
 In Tempo Tear, you are a groovy samurai who must make their last stand against waves of enemies trying to kill his "vibe." Slash your way to victory but stay on rhythm!
@@ -16,9 +16,7 @@ The player samurai can take four hits, so make sure not to make too many mistake
 
 ## Scoring and Multipliers
 <img width="190" alt="image" src="https://user-images.githubusercontent.com/52114668/171697195-bb816263-0394-4e60-b8db-48c1deb42498.png">
-- Score points by slashing enemies. More points are given the more in-tune to the rhythm you slash, from a minimum of 10 points to a maximum of 300.
-- Increase your multiplier by slashing in rhythm to the beat.
-- Getting hit will reset your multiplier.
+Score points by slashing enemies. More points are given the more in-tune to the rhythm you slash, from a minimum of 10 points to a maximum of 300. Increase your multiplier by slashing in rhythm to the beat. Getting hit will reset your multiplier!
 
 ## Music Used
 - Main Menu: Waveshaper - A Monster
